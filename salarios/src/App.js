@@ -1,18 +1,31 @@
-import React from "react";
-import Empleados from "./components/Empleados";
-import "./App.css";
-
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Signup from './components/SignUp';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import PrivateRoute from './components/PrivateRoute';
+import { Container } from 'react-bootstrap';
+import { AuthProvider } from './context/AuthContext';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Empleados from './components/Empleados';
+import EmpleadoForm from './components/EmpleadoForm';
 
 function App() {
   return (
-    <div className="container p-4">
-      <div className="row">
-        <Empleados />
-      </div>
+    <Container>
+      <Router>
+        <AuthProvider>
+          <Switch>
+            <PrivateRoute exact path="/" component={Dashboard} />
+            <PrivateRoute exact path="/empleados" component={Empleados} />
+            <PrivateRoute exact path="/nuevosempleados" component={EmpleadoForm} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+          </Switch>
+        </AuthProvider>
+      </Router>
       <ToastContainer />
-    </div>
+    </Container>
   );
 }
 

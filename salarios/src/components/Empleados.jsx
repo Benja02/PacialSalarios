@@ -28,20 +28,38 @@ const Empleados = () => {
     }
   };
 
-  // const Sueldos = async (id) => {
-  // if(totalhoras > 160){
-
-  // }
-
-  // }
-
-
 
   useEffect(() => {
     getEmpleados();
   }, []);
 
   const addOrEditEmpleado = async (EmpleadoObject) => {
+    if (parseInt(EmpleadoObject.totalhoras) <= 160) {
+      EmpleadoObject.sueldobase = EmpleadoObject.totalhoras * 9.75;
+    }
+    if (parseInt(EmpleadoObject.totalhoras) > 160 && parseInt(EmpleadoObject.totalhoras) <= 200) {
+      var primero = 160*9.75;   
+      var restadehoras = EmpleadoObject.totalhoras - 160;
+
+      EmpleadoObject.sueldobase = primero + (restadehoras* 10.50) ;
+    }
+    if (parseInt(EmpleadoObject.totalhoras) > 200 && parseInt(EmpleadoObject.totalhoras) <= 250) {
+      var primerashoras = 160*9.75;
+      var segundo = 40*10.50;
+      
+      var restantehoras = EmpleadoObject.totalhoras - 200;
+
+
+      EmpleadoObject.sueldobase = primerashoras + segundo + (restantehoras* 12.50) ;
+    }
+
+    EmpleadoObject.isss = EmpleadoObject.sueldobase*0.0525;
+    EmpleadoObject.afp = EmpleadoObject.sueldobase*0.0688;
+    EmpleadoObject.renta = EmpleadoObject.sueldobase*0.1;
+
+    EmpleadoObject.sueldoneto = EmpleadoObject.sueldobase - (EmpleadoObject.isss+EmpleadoObject.afp+EmpleadoObject.renta);
+
+
   
     try {
       if (currentId === "") {
@@ -77,7 +95,11 @@ const Empleados = () => {
                 <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Total Horas</th>
-                <th>Sueldo base</th>
+                <th>Sueldo Base</th>
+                <th>Descuento ISSS</th>
+                <th>Descuento AFP</th>
+                <th>Descuento Renta</th>
+                <th>Salario Neto</th>
                 <th>Aciones</th>
               </tr>
             </thead>
@@ -87,6 +109,11 @@ const Empleados = () => {
                   <td>{Empleado.codigo}</td>
                   <td>{Empleado.nombre}</td>
                   <td>{Empleado.totalhoras}</td>
+                  <td>{Empleado.sueldobase}</td>
+                  <td>{Empleado.isss}</td>
+                  <td>{Empleado.afp}</td>
+                  <td>{Empleado.renta}</td>
+                  <td>{Empleado.sueldoneto}</td>
                   <td>
                     <button className="btn btn-primary" onClick={() => setCurrentId(Empleado.id)}>Editar</button>
                     &nbsp;

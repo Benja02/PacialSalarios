@@ -7,7 +7,12 @@ const EmpleadoForm = (props) => {
   const initialStateValues = {
     codigo: "",
     nombre: "",
-    totalhoras: ""
+    totalhoras: "",
+    sueldobase: "",
+    isss:"",
+    afp:"",
+    renta:"",
+    sueldoneto:""
   };
 
   const [values, setValues] = useState(initialStateValues);
@@ -78,12 +83,13 @@ const EmpleadoForm = (props) => {
           <i className="material-icons">exposure</i>
         </div>
         <input
-          type="text"
+          type="number"
           value={values.totalhoras}
           name="totalhoras"
           placeholder="Ingrese Horas trabajadas"
           className="form-control"
           onChange={handleInputChange}
+          min='0'
         />
       </div>
 
