@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Empleados from './components/Empleados';
-import EmpleadoForm from './components/EmpleadoForm';
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
           <Switch>
             <PrivateRoute exact path="/" component={Dashboard} />
             <PrivateRoute exact path="/empleados" component={Empleados} />
-            <PrivateRoute exact path="/nuevosempleados" component={EmpleadoForm} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
           </Switch>

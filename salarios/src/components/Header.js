@@ -31,11 +31,6 @@ export default function Header() {
                 Empleados
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/nuevosempleados">
-                New Empleado
-              </Link>
-            </li>
           </ul>
         </div>
       </nav>

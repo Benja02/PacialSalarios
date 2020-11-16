@@ -51,7 +51,7 @@ const EmpleadoForm = (props) => {
     <form onSubmit={handleSubmit} className="card card-body border-primary">
         <div className="form-group input-group">
         <div className="input-group-text bg-light">
-          <i className="material-icons">contact_page</i>
+          <i className="material-icons">Codigo</i>
         </div>
         <input
           type="text"
@@ -66,7 +66,7 @@ const EmpleadoForm = (props) => {
 
       <div className="form-group input-group">
         <div className="input-group-text bg-light">
-          <i className="material-icons">contact_page</i>
+          <i className="material-icons">Nombre</i>
         </div>
         <input
           type="text"
@@ -80,16 +80,16 @@ const EmpleadoForm = (props) => {
       
       <div className="form-group input-group">
         <div className="input-group-text bg-light">
-          <i className="material-icons">exposure</i>
+          <i className="material-icons">Total Horas</i>
         </div>
         <input
-          type="number"
+          type="text"
           value={values.totalhoras}
           name="totalhoras"
           placeholder="Ingrese Horas trabajadas"
           className="form-control"
           onChange={handleInputChange}
-          min='0'
+          
         />
       </div>
 
